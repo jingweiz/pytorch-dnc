@@ -1,4 +1,4 @@
 *.pyc
-./dnc/*.pyc
-./dnc/agents/*.pyc
+./core/*.pyc
+./core/*/*.pyc
 ./utils/*.pyc
