@@ -19,9 +19,9 @@ class LSTMController(Controller):
     def _init_weights(self):
         pass
 
-    def forward(self, input_vb):
+    def forward(self, input_vb, read_vec_vb):
         self.lstm_hidden_vb = self.in_2_hid(torch.cat((input_vb.contiguous().view(-1, self.input_dim),
-                                                       self.read_vec_vb.contiguous().view(-1, self.read_vec_dim)), 1),
+                                                       read_vec_vb.contiguous().view(-1, self.read_vec_dim)), 1),
                                             self.lstm_hidden_vb)
 
         # we clip the controller states here

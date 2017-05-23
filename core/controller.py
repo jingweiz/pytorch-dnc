@@ -36,9 +36,7 @@ class Controller(nn.Module):
         self.logger.warning(self)
 
     def _reset_states(self):
-        # we first reset the previous read vector
-        self.read_vec_vb = Variable(self.read_vec_ts).type(self.dtype)
-        # we then reset controller's hidden state
+        # we reset controller's hidden state
         self.lstm_hidden_vb = (Variable(self.lstm_hidden_ts[0]).type(self.dtype),
                                Variable(self.lstm_hidden_ts[1]).type(self.dtype))
 
@@ -47,7 +45,6 @@ class Controller(nn.Module):
         self.type(self.dtype)   # put on gpu if possible
         self.print_model()
         # reset internal states
-        self.read_vec_ts = torch.zeros(self.batch_size, self.read_vec_dim)
         self.lstm_hidden_ts = []
         self.lstm_hidden_ts.append(torch.zeros(self.batch_size, self.hidden_dim))
         self.lstm_hidden_ts.append(torch.zeros(self.batch_size, self.hidden_dim))

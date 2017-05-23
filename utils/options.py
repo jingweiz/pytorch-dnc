@@ -22,7 +22,7 @@ class Params(object):   # NOTE: shared across all modules
 
         # training signature
         self.machine     = "daim"       # "machine_id"
-        self.timestamp   = "17051000"   # "yymmdd##"
+        self.timestamp   = "17052300"   # "yymmdd##"
         # training configuration
         self.mode        = 1            # 1(train) | 2(test model_file)
         self.config      = 2
