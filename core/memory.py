@@ -31,9 +31,6 @@ class ExternalMemory(object):
         raise NotImplementedError("not implemented in base calss")
 
     def _reset_states(self):
-        # NOTE: memory is not in the graph so should just be a Tensor
-        # NOTE: its values are only involved with the graph through the heads
-        # TODO: check again here how to initialize
         self.memory_vb = Variable(self.memory_ts).type(self.dtype)
 
     def _reset(self):           # NOTE: should be called at each child's __init__
