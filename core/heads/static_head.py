@@ -86,9 +86,8 @@ class StaticHead(Head):
         self.gate_vb = self.gate_vb.expand_as(self.wc_vb)
         wg_vb = self.wc_vb * self.gate_vb + self.wl_prev_vb * (1. - self.gate_vb)
         ws_vb = self._shift(wg_vb, self.shift_vb)
-        # TODO: this pow is actually not sharpening but smoothing, since the values in ws_vb would mostly be <1
-        # TODO: check again here, the paper description is wrong here!!!!!!!!!!!!!!!!!
-        self.wl_curr_vb = F.softmax(ws_vb.pow(self.gamma_vb.expand_as(ws_vb)).transpose(0, 2)).transpose(0, 2)
+        wp_vb = ws_vb.pow(self.gamma_vb.expand_as(ws_vb))
+        self.wl_curr_vb = wp_vb / wp_vb.sum(2).expand_as(wp_vb)
 
     def forward(self, hidden_vb, memory_vb):
         # outputs for computing addressing for heads
