@@ -141,7 +141,7 @@ class DynamicWriteHead(DynamicHead):
         self.wl_prev_vb = self.wl_curr_vb
         # access
         self.erase_vb = F.sigmoid(self.hid_2_erase(hidden_vb)).view(-1, self.num_heads, self.mem_wid)
-        self.add_vb   = self.hid_2_add(hidden_vb).view(-1, self.num_heads, self.mem_wid)
+        self.add_vb   = F.tanh(self.hid_2_add(hidden_vb)).view(-1, self.num_heads, self.mem_wid)
         return self._access(memory_vb)
 
     def _update_link(self, prev_link_vb, prev_preced_vb):
