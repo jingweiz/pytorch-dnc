@@ -49,7 +49,7 @@ class DynamicHead(Head):
         # NOTE: sigmoid to constrain to [0, 1]
         # NOTE: oneplus to constrain to [1, +inf]
         self.key_vb   = F.tanh(self.hid_2_key(hidden_vb)).view(-1, self.num_heads, self.mem_wid)    # TODO: relu to bias the memory to store positive values ??? check again
-        self.beta_vb  = (1. + F.softplus(self.hid_2_beta(hidden_vb))).view(-1, self.num_heads, 1)   # beta >=1: https://github.com/deepmind/dnc/issues/9
+        self.beta_vb  = F.softplus(self.hid_2_beta(hidden_vb)).view(-1, self.num_heads, 1)          # beta >=1: https://github.com/deepmind/dnc/issues/9
 
         # now we compute the addressing mechanism
         self._content_focus(memory_vb)
