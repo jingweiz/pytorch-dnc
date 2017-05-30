@@ -71,7 +71,7 @@ class Circuit(nn.Module):   # NOTE: basically this whole module is treated as a 
         self.type(self.dtype)
         self.print_model()
         # reset internal states
-        self.read_vec_ts = torch.zeros(self.batch_size, self.read_vec_dim)
+        self.read_vec_ts = torch.zeros(self.batch_size, self.read_vec_dim).fill_(1e-6)
         self._reset_states()
 
     def forward(self, input_vb):

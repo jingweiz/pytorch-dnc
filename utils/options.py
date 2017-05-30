@@ -171,7 +171,7 @@ class AgentParams(Params):  # hyperparameters for drl agents
                 self.optim          = optim.RMSprop
 
                 self.steps          = 100000    # max #iterations
-                self.batch_size     = 8
+                self.batch_size     = 1 
                 self.early_stop     = None      # max #steps per episode
                 self.clip_grad      = 50.
                 self.lr             = 1e-4

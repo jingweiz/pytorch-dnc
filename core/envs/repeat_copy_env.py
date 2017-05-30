@@ -55,7 +55,7 @@ class RepeatCopyEnv(Env):
         mask_ts:   [(num_wordsx(repeats+1)+3) x batch_size x (len_word+1)]
         output_ts: [(num_wordsx(repeats+1)+3) x batch_size x (len_word+1)]
         """
-        input_ts = self._unnormalize_input(input_ts)
+        input_ts  = self._unnormalize_repeats(input_ts)
         output_ts = torch.round(output_ts * mask_ts) if output_ts is not None else None
         input_strings  = [self._readable(input_ts[:, 0, i])  for i in range(input_ts.size(2))]
         target_strings = [self._readable(target_ts[:, 0, i]) for i in range(target_ts.size(2))]
@@ -81,7 +81,7 @@ class RepeatCopyEnv(Env):
     def _normalize_repeats(self, repeats):
         return repeats / self.max_repeats_norm
 
-    def _unnormalize_input(self, input_ts):
+    def _unnormalize_repeats(self, input_ts):
         if input_ts.size(1) == 1:
             return input_ts
         else:
@@ -123,7 +123,7 @@ class RepeatCopyEnv(Env):
         self.exp_state1.append(np.zeros((self.batch_size, max_batch_num_words * (max_batch_repeats + 1) + 3, self.len_word + 2))) # input
         self.exp_state1.append(np.zeros((self.batch_size, max_batch_num_words * (max_batch_repeats + 1) + 3, self.len_word + 1))) # target
         self.exp_state1.append(np.zeros((self.batch_size, max_batch_num_words * (max_batch_repeats + 1) + 3, 1)))                 # mask
-        self.unnormalize_input_ts = torch.ones(self.batch_size, max_batch_num_words * (max_batch_repeats + 1) + 3, self.len_word + 2)
+        self.unnormalize_ts = torch.ones(self.batch_size, max_batch_num_words * (max_batch_repeats + 1) + 3, self.len_word + 2)
         for batch_ind in range(self.batch_size):
             num_words = batch_num_words[batch_ind]
             repeats   = batch_repeats[batch_ind]
@@ -133,7 +133,7 @@ class RepeatCopyEnv(Env):
             self.exp_state1[0][batch_ind][0][-2] = 1                        # set start bit
             self.exp_state1[0][batch_ind][1:num_words+1, 0:self.len_word] = data
             self.exp_state1[0][batch_ind][num_words+1][-1] = self._normalize_repeats(repeats)   # normalize the repeat flag
-            self.unnormalize_input_ts[batch_ind][num_words+1][-1] = self.max_repeats_norm       # to ease visualization w/ unnormalized repeat flag
+            self.unnormalize_ts[batch_ind][num_words+1][-1] = self.max_repeats_norm             # to ease visualization w/ unnormalized repeat flag
             # prepare target for this sample
             self.exp_state1[1][batch_ind][num_words+2:num_words*(repeats+1)+2, 0:self.len_word] = data_rep
             self.exp_state1[1][batch_ind][num_words*(repeats+1)+2][-1] = 1  # set end bit

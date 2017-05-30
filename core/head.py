@@ -34,7 +34,7 @@ class Head(nn.Module):
         self.type(self.dtype)   # put on gpu if possible
         # TODO: see how this one is reset
         # reset internal states
-        self.wl_prev_ts = torch.eye(self.batch_size, self.mem_hei).unsqueeze(1).expand(self.batch_size, self.num_heads, self.mem_hei)
+        self.wl_prev_ts = torch.eye(1, self.mem_hei).unsqueeze(0).expand(self.batch_size, self.num_heads, self.mem_hei)
         self._reset_states()
 
     def _visual(self):

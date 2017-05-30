@@ -34,7 +34,7 @@ class ExternalMemory(object):
         self.memory_vb = Variable(self.memory_ts).type(self.dtype)
 
     def _reset(self):           # NOTE: should be called at each child's __init__
-        self.memory_ts = torch.zeros(self.batch_size, self.mem_hei, self.mem_wid).fill_(5e-6)
+        self.memory_ts = torch.zeros(self.batch_size, self.mem_hei, self.mem_wid).fill_(1e-6)
         self._reset_states()
 
     def visual(self):
