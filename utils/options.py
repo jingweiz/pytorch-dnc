@@ -21,11 +21,11 @@ class Params(object):   # NOTE: shared across all modules
         self.verbose     = 0            # 0(warning) | 1(info) | 2(debug)
 
         # training signature
-        self.machine     = "aispear"    # "machine_id"
+        self.machine     = "daim"       # "machine_id"
         self.timestamp   = "17053100"   # "yymmdd##"
         # training configuration
         self.mode        = 1            # 1(train) | 2(test model_file)
-        self.config      = 1
+        self.config      = 1 
 
         self.seed        = 123
         self.render      = False        # whether render the window from the original envs or not
@@ -147,8 +147,8 @@ class CircuitParams(Params):# settings for network architecture
             self.hidden_dim      = 100
             self.num_write_heads = 1
             self.num_read_heads  = 1
-            self.mem_hei         = 20#128#16
-            self.mem_wid         = 20#16
+            self.mem_hei         = 128
+            self.mem_wid         = 20
             self.clip_value      = 20.   # clips controller and circuit output values to in between
         elif self.circuit_type == "dnc":
             self.hidden_dim      = 64
