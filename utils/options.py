@@ -21,11 +21,11 @@ class Params(object):   # NOTE: shared across all modules
         self.verbose     = 0            # 0(warning) | 1(info) | 2(debug)
 
         # training signature
-        self.machine     = "daim"       # "machine_id"
-        self.timestamp   = "17052300"   # "yymmdd##"
+        self.machine     = "aispear"    # "machine_id"
+        self.timestamp   = "17053100"   # "yymmdd##"
         # training configuration
         self.mode        = 1            # 1(train) | 2(test model_file)
-        self.config      = 2
+        self.config      = 1
 
         self.seed        = 123
         self.render      = False        # whether render the window from the original envs or not
@@ -67,9 +67,9 @@ class EnvParams(Params):    # settings for network architecture
 
         self.batch_size = None
         if self.env_type == "copy":
-            self.len_word  = 4
-            self.min_num_words = 1
-            self.max_num_words = 5
+            self.len_word  = 8
+            self.min_num_words = 5
+            self.max_num_words = 10
         elif self.env_type == "repeat-copy":
             self.len_word  = 4
             self.min_num_words = 1
@@ -147,8 +147,8 @@ class CircuitParams(Params):# settings for network architecture
             self.hidden_dim      = 100
             self.num_write_heads = 1
             self.num_read_heads  = 1
-            self.mem_hei         = 16
-            self.mem_wid         = 16
+            self.mem_hei         = 20#128#16
+            self.mem_wid         = 20#16
             self.clip_value      = 20.   # clips controller and circuit output values to in between
         elif self.circuit_type == "dnc":
             self.hidden_dim      = 64
@@ -171,7 +171,7 @@ class AgentParams(Params):  # hyperparameters for drl agents
                 self.optim          = optim.RMSprop
 
                 self.steps          = 100000    # max #iterations
-                self.batch_size     = 1 
+                self.batch_size     = 1
                 self.early_stop     = None      # max #steps per episode
                 self.clip_grad      = 50.
                 self.lr             = 1e-4
