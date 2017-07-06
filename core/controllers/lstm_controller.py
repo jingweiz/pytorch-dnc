@@ -24,7 +24,8 @@ class LSTMController(Controller):
                                                        read_vec_vb.contiguous().view(-1, self.read_vec_dim)), 1),
                                             self.lstm_hidden_vb)
 
-        # we clip the controller states here
-        self.lstm_hidden_vb[0].clamp(min=-self.clip_value, max=self.clip_value)
-        self.lstm_hidden_vb[1].clamp(min=-self.clip_value, max=self.clip_value)
+        # we clip the controller hidden states here
+        self.lstm_hidden_vb = [self.lstm_hidden_vb[0].clamp(min=-self.clip_value, max=self.clip_value),
+                               self.lstm_hidden_vb[1]]
+
         return self.lstm_hidden_vb[0]

@@ -85,7 +85,7 @@ class RepeatCopyEnv(Env):
         if input_ts.size(1) == 1:
             return input_ts
         else:
-            return input_ts.cpu() * self.unnormalize_input_ts.transpose(0, 1)
+            return input_ts.cpu() * self.unnormalize_ts.transpose(0, 1)
 
     def _generate_sequence(self):
         """
