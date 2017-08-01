@@ -72,7 +72,7 @@ class SLAgent(Agent):   # for supervised learning tasks
                                 self.mask_ts[i,0,:].unsqueeze(0).unsqueeze(1),
                                 self.output_vb.data[i,0,:].unsqueeze(0).unsqueeze(1))
                 self.circuit.accessor.visual()
-                raw_input()
+                input()
 
         if not self.training and self.visualize:
             self.env.visual(input_ts, self.target_vb.data, self.mask_ts, self.output_vb.data)
