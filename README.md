@@ -5,10 +5,11 @@
 
 
 * Sample on-line plotting while training(avg loss)/testing(write/read weights & memory)
-  NTM on the copy task and
-  DNC on the repeat-copy task (the write/read weights here are after location focus so are no longer necessarily normalized within each head by design):
+  NTM on the copy task (top 2 rows, 1st row converges to sequentially write to lower locations, 2nd row converges to sequentially write to upper locations) and
+  DNC on the repeat-copy task (3rd row) (the write/read weights here are after location focus so are no longer necessarily normalized within each head by design):
 
-<img src="/assets/ntm_copy_train_revised.png" width="205"/> <img src="/assets/ntm_copy_test_revised.gif" width="600"/>
+<img src="/assets/ntm_copy_train_revised_16_0.png" width="205"/> <img src="/assets/ntm_copy_test_revised_16_0.gif" width="600"/>
+<img src="/assets/ntm_copy_train_revised_16_1.png" width="205"/> <img src="/assets/ntm_copy_test_revised_16_1.gif" width="600"/>
 <img src="/assets/dnc_repeat_copy_train_revised_tanh.png" width="205"/> <img src="/assets/dnc_repeat_copy_test_revised.gif" width="600"/>
 
 

@@ -22,12 +22,12 @@ class Params(object):   # NOTE: shared across all modules
 
         # training signature
         self.machine     = "daim"       # "machine_id"
-        self.timestamp   = "17053100"   # "yymmdd##"
+        self.timestamp   = "17080200"   # "yymmdd##"
         # training configuration
         self.mode        = 1            # 1(train) | 2(test model_file)
-        self.config      = 1 
+        self.config      = 1
 
-        self.seed        = 123
+        self.seed        = 1
         self.render      = False        # whether render the window from the original envs or not
         self.visualize   = True         # whether do online plotting and stuff or not
         self.save_best   = False        # save model w/ highest reward if True, otherwise always save the latest model
@@ -171,7 +171,7 @@ class AgentParams(Params):  # hyperparameters for drl agents
                 self.optim          = optim.RMSprop
 
                 self.steps          = 100000    # max #iterations
-                self.batch_size     = 1
+                self.batch_size     = 16
                 self.early_stop     = None      # max #steps per episode
                 self.clip_grad      = 50.
                 self.lr             = 1e-4
