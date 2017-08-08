@@ -72,7 +72,8 @@ class DynamicWriteHead(DynamicHead):
         # TODO: seems we have to wait for this PR: https://github.com/pytorch/pytorch/pull/1439
         prod_sorted_usage_vb = fake_cumprod(cat_sorted_usage_vb)
         # prod_sorted_usage_vb = torch.cumprod(cat_sorted_usage_vb, dim=1) # TODO: use this once the PR is ready
-        alloc_weight_vb = (1 - sorted_usage_vb) * prod_sorted_usage_vb  # equ. (1)
+        # alloc_weight_vb = (1 - sorted_usage_vb) * prod_sorted_usage_vb  # equ. (1)            # 0.1.12
+        alloc_weight_vb = (1 - sorted_usage_vb) * prod_sorted_usage_vb.squeeze()  # equ. (1)    # 0.2.0
         _, indices_vb = torch.topk(indices_vb, k=self.mem_hei, dim=1, largest=False)
         alloc_weight_vb = alloc_weight_vb.gather(1, indices_vb)
         return alloc_weight_vb
@@ -187,7 +188,8 @@ class DynamicWriteHead(DynamicHead):
         returns:
             preced_vb:      [batch_size x num_write_heads x mem_hei]
         """
-        write_sum_vb = torch.sum(self.wl_curr_vb, 2)
+        # write_sum_vb = torch.sum(self.wl_curr_vb, 2)              # 0.1.12
+        write_sum_vb = torch.sum(self.wl_curr_vb, 2, keepdim=True)  # 0.2.0
         return (1 - write_sum_vb).expand_as(prev_preced_vb) * prev_preced_vb + self.wl_curr_vb
 
     def _temporal_link(self, prev_link_vb, prev_preced_vb):

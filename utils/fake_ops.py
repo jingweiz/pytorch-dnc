@@ -22,6 +22,7 @@ def fake_cumprod(vb):
        mul_mask_vb[i, :, :i+1] = 1
     add_mask_vb = 1 - mul_mask_vb
     vb = vb.expand_as(mul_mask_vb) * mul_mask_vb + add_mask_vb
-    vb = torch.prod(vb, 2).transpose(0, 2)
+    # vb = torch.prod(vb, 2).transpose(0, 2)                # 0.1.12
+    vb = torch.prod(vb, 2, keepdim=True).transpose(0, 2)    # 0.2.0
     # print(real_cumprod - vb.data) # NOTE: checked, ==0
     return vb

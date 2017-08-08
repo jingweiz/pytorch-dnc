@@ -87,7 +87,8 @@ class StaticHead(Head):
         wg_vb = self.wc_vb * self.gate_vb + self.wl_prev_vb * (1. - self.gate_vb)
         ws_vb = self._shift(wg_vb, self.shift_vb)
         wp_vb = ws_vb.pow(self.gamma_vb.expand_as(ws_vb))
-        self.wl_curr_vb = wp_vb / wp_vb.sum(2).expand_as(wp_vb)
+        # self.wl_curr_vb = wp_vb / wp_vb.sum(2).expand_as(wp_vb)               # 0.1.12
+        self.wl_curr_vb = wp_vb / wp_vb.sum(2, keepdim=True).expand_as(wp_vb)   # 0.2.0
 
     def forward(self, hidden_vb, memory_vb):
         # outputs for computing addressing for heads
