@@ -115,7 +115,7 @@ NOTE: we follow the exact code structure as [pytorch-rl](https://github.com/jing
 
 ## Dependencies
 - Python 2.7
-- [PyTorch](http://pytorch.org/)
+- [PyTorch >=v0.2.0](http://pytorch.org/)
 - [Visdom](https://github.com/facebookresearch/visdom)
 *******
 
