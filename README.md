@@ -202,3 +202,17 @@ providing datasets for ```supervised learning```, so the ```reward```,
 * [DoctorTeeth/diffmem](https://github.com/DoctorTeeth/diffmem)
 * [kaishengtai/torch-ntm](https://github.com/kaishengtai/torch-ntm)
 * [Mostafa-Samir/DNC-tensorflow](https://github.com/Mostafa-Samir/DNC-tensorflow)
+*******
+
+## The following paper might be interesting to take a look:)
+> [Neural SLAM](https://arxiv.org/abs/1706.09520): We present an approach for agents to learn representations of a global map from sensor data, to aid their exploration in new environments. To achieve this, we embed procedures mimicking that of traditional Simultaneous Localization and Mapping (SLAM) into the soft attention based addressing of external memory architectures, in which the external memory acts as an internal representation of the environment. This structure encourages the evolution of SLAM-like behaviors inside a completely differentiable deep neural network. We show that this approach can help reinforcement learning agents to successfully explore new environments where long-term memory is essential. We validate our approach in both challenging grid-world environments and preliminary Gazebo experiments. A video of our experiments can be found at: \url{https://goo.gl/RfiSxo}.
+
+```
+@article{zhang2017neural,
+  title={Neural SLAM},
+  author={Zhang, Jingwei and Tai, Lei and Boedecker, Joschka and Burgard, Wolfram and Liu, Ming},
+  journal={arXiv preprint arXiv:1706.09520},
+  year={2017}
+}
+
+```
