@@ -216,6 +216,3 @@ class SLAgent(Agent):   # for supervised learning tasks
         # logging
         self.logger.warning("Testing  Took: " + str(time.time() - self.start_time))
         self.logger.warning("Iteration: {}; loss_avg: {}".format(self.step, self.loss_avg_log[-1][1]))
-
-        # save model
-        self._save_model(self.step, 0.) # TODO: here should pass in the negative loss
