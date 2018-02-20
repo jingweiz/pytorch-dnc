@@ -216,3 +216,16 @@ providing datasets for ```supervised learning```, so the ```reward```,
 }
 
 ```
+*******
+
+
+## Citation
+If you find this library useful and would like to cite it, the following would be appropriate:
+```
+@misc{pytorch-dnc,
+  author = {Zhang, Jingwei},
+  title = {jingweiz/pytorch-dnc},
+  url = {https://github.com/jingweiz/pytorch-dnc},
+  year = {2017}
+}
+```
